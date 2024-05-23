@@ -217,6 +217,7 @@
                 })
                 .catch(error => {
                     console.log("Failed to load data: " + error.message, "error");
+                    swal("Error", "Error adding ToDo task: " + error.message, "error");
                     userDataDiv.textContent = 'Failed to load data.';
                 });
 

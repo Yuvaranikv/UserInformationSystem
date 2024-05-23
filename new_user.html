@@ -20,7 +20,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="css/bootstrap-override.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/sidebars.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.css">
@@ -31,27 +30,32 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
-    @media (max-width: 567px) {
-        .sidebar {
-            width: 180px; 
-           height: 250px;
-        }
-         
-        .navbar-toggler {
-        display: block; /* Hide navbar toggle button on larger screens */
-    }
-    .form-element {
-        margin-bottom: 0.5rem; /* Reduce the margin-bottom for small screens */
-    }
-    .form-control-lg {
-        padding: 0.5rem 0.75rem; /* Adjust padding to reduce space */
-    }
-    }
+        @media (max-width: 567px) {
+            .sidebar {
+                width: 180px;
+                height: 250px;
+            }
 
-    .form-element {
-    margin-bottom: 1rem;
-}
-   </style> 
+            .navbar-toggler {
+                display: block;
+                /* Hide navbar toggle button on larger screens */
+            }
+
+            .form-element {
+                margin-bottom: 0.5rem;
+                /* Reduce the margin-bottom for small screens */
+            }
+
+            .form-control-lg {
+                padding: 0.5rem 0.75rem;
+                /* Adjust padding to reduce space */
+            }
+        }
+
+        .form-element {
+            margin-bottom: 1rem;
+        }
+    </style>
 
 </head>
 
@@ -184,48 +188,52 @@
                 </div>
 
                 <!-- Right column (user data) -->
-              
-                        <!-- Form column -->
-                        <div class="col-md-10 col-lg-4 col-12 p-3 bg-light">
-                            <h3>Add New User</h3>
-                            <hr>
-                            <form id="todoForm">
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-12 mb-3 form-element">
-                                        <div class="form-group">
-                                            <label for="name">Name:</label>
-                                            <input id="name" name="name" class="form-control form-control-lg" placeholder="Name" required>
-                                            <div class="invalid-feedback">
-                                                Your Name is required.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12 mb-3 form-element">
-                                        <div class="form-group">
-                                            <label for="username">User Name:</label>
-                                            <input id="username" name="username" class="form-control form-control-lg" placeholder="User Name" required>
-                                            <div class="invalid-feedback">
-                                                Your User Name is required.
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-12 mb-3 form-element">
-                                        <div class="form-group">
-                                            <label for="password">Password:</label>
-                                            <input type="password" id="password" class="form-control form-control-lg" name="password" placeholder="Password" required>
-                                            <div class="invalid-feedback">
-                                                Your password is required.
-                                            </div>
-                                        </div>
+
+                <!-- Form column -->
+                <div class="col-md-10 col-lg-4 col-12 p-3 bg-light">
+                    <h3>Add New User</h3>
+                    <hr>
+                    <form id="todoForm">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12 mb-3 form-element">
+                                <div class="form-group">
+                                    <label for="name">Name:</label>
+                                    <input id="name" name="name" class="form-control form-control-lg" placeholder="Name"
+                                        required>
+                                    <div class="invalid-feedback">
+                                        Your Name is required.
                                     </div>
                                 </div>
-                                <div class="pt-1 mb-4 d-grid justify-content-center">
-                                    <button class="btn btn-lg btn-primary" style="width: 120px;" id="my-button" type="submit">Submit</button>
+                            </div>
+                            <div class="col-md-6 col-sm-12 mb-3 form-element">
+                                <div class="form-group">
+                                    <label for="username">User Name:</label>
+                                    <input id="username" name="username" class="form-control form-control-lg"
+                                        placeholder="User Name" required>
+                                    <div class="invalid-feedback">
+                                        Your User Name is required.
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
+                            <div class="col-md-6 col-sm-12 mb-3 form-element">
+                                <div class="form-group">
+                                    <label for="password">Password:</label>
+                                    <input type="password" id="password" class="form-control form-control-lg"
+                                        name="password" placeholder="Password" required>
+                                    <div class="invalid-feedback">
+                                        Your password is required.
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        
-                    
+                        <div class="pt-1 mb-4 d-grid justify-content-center">
+                            <button class="btn btn-lg btn-primary" style="width: 120px;" id="my-button"
+                                type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+
+
             </div>
 
             <script>
@@ -264,13 +272,15 @@
                                 })
                                     .then(response => {
                                         if (response.ok) {
-                                            //alert('ToDo task added successfully!');
-                                            swal({
-                                                title: "Success",
-                                                text: "New User added successfully!",
-                                                icon: "success"
-                                            });
-                                            form.reset(); // Reset form after successful submission
+                                            alert('ToDo task added successfully!');
+                                            // Swal.fire({
+                                            //     title: 'Success!',
+                                            //     text: 'Task added successfully.',
+                                            //     icon: 'success',
+                                            //     confirmButtonText: 'OK'
+                                            // });
+
+                                             form.reset(); // Reset form after successful submission
                                         } else {
                                             throw new Error('Failed to add ToDo task');
                                             form.reset();
@@ -278,14 +288,14 @@
                                     })
                                     .catch(error => {
                                         console.error('Error adding ToDo task:', error);
-                                        swal("Error", "Error adding ToDo task: " + error.message, "error");
+                                        //swal("Error", "Error adding ToDo task: " + error.message, "error");
                                         form.reset();
                                         // alert('Failed to add ToDo task. Please try again.');
                                     });
                             })
                             .catch(error => {
                                 console.error('Error fetching ToDo list:', error);
-                                swal("Error", "Error fetching ToDo list: " + error.message, "error");
+                                //swal("Error", "Error fetching ToDo list: " + error.message, "error");
                                 form.reset();
                                 // alert('Failed to add ToDo task. Please try again.');
                             });
