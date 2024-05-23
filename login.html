@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <!-- Include the above in your HEAD tag -->
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <div class="main">
+
+
+        <div class="container">
+            <center>
+                <div class="middle">
+                    <div id="login">
+                        <h1>User information System</h1>
+                        <form action="javascript:void(0);" method="get" id="todoForm">
+
+                            <fieldset class="clearfix">
+
+                                <p><span class="fa fa-user"></span><input type="text" Placeholder="Username" required>
+                                </p> <!-- JS because of IE support; better: placeholder="Username" -->
+                                <p><span class="fa fa-lock"></span><input type="password" Placeholder="Password"
+                                        required></p> <!-- JS because of IE support; better: placeholder="Password" -->
+
+                                <div>
+                                    <span style="width:48%; text-align:left;  display: inline-block;"><a
+                                            class="small-text" href="#">Forgot
+                                            password?</a></span>
+                                    <span style="width:50%; text-align:right;  display: inline-block;"><input
+                                            type="submit" value="Sign In"></span>
+                                </div>
+
+                            </fieldset>
+                            <div class="clearfix"></div>
+                        </form>
+
+                        <div class="clearfix"></div>
+
+                    </div> <!-- end login -->
+                    <div class="logo">
+
+                        <div class="clearfix"></div>
+                    </div>
+
+                </div>
+            </center>
+        </div>
+
+    </div>
+    <script>
+        window.onload = function () {
+            const form = document.getElementById('todoForm');
+            form.addEventListener('submit', function (event) {
+                event.preventDefault(); // Prevent default form submission
+    
+                const formData = new FormData(form);
+                const name = formData.get('name');
+                const username = formData.get('username');
+                const password = formData.get('password');
+    
+                // Check if user exists by sending a GET request to retrieve user data
+                fetch(`http://localhost:8083/api/users?username=${username}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json(); // Parse response JSON
+                    } else {
+                        throw new Error('Failed to retrieve user data');
+                    }
+                })
+                .then(userData => {
+                    // User exists if userData is not empty
+                    if (userData && userData.length > 0) {
+                        // Redirect to index.html if user is found
+                        window.location.href = 'index.html';
+                    } else {
+                        // Show error message if user does not exist
+                        alert('You are not an admin user.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error checking user data:', error);
+                    alert('Failed to check user data. Please try again.');
+                });
+            });
+            
+        };
+    </script>
+    
+</body>
+
+</html>
